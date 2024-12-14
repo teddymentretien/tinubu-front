@@ -1,35 +1,46 @@
 import React, { useState } from 'react';
-import { SelectField, Option } from "../../../components/SelectField";
-
-const ModalPlaceholder: React.FC = () => {
-  return <div>Modal Placeholder</div>;
-};
+import { SelectField, Option } from "@/src/components/SelectField";
+import Modal from '@/src/components/Modal';
+import FormSubmitContext from '@/src/contexts/FormSubmitContext';
+import { CustomForm as Form, FormValues } from '@/src/components/Form';
 
 const BrokerSelectField: React.FC = () => {
+  const [modalOpen, setModalOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<string>('');
-  const [isModalOpen, setModalOpen] = useState<boolean>(false);
-
+  
   const options: Option[] = [
     { label: 'Robco Industries - 1785 Railway St, Kenora, ON P9N 0B5 - Canada', value: 'robco' },
   ];
+
+  const handleOpen = () => setModalOpen(true);
+  const handleClose = () => setModalOpen(false);
 
   const handleOnChange = (value: string) => {
     setSelectedOption(value);
   };
 
+  const handleFormSubmit = (formData: FormValues) => {
+    handleClose();
+  };
+
   return (
-    <div>
+    <FormSubmitContext.Provider value={{ submitForm: handleFormSubmit }}>
       <SelectField
         options={options}
         label="Managing broker"
         value={selectedOption}
         onChange={handleOnChange}
-        actionLabel="Add manualy"
-        actionOnClick={() => setModalOpen(true)}
+        actionLabel="Add manually"
+        actionOnClick={handleOpen}
       />
-
-      {isModalOpen && <ModalPlaceholder />}
-    </div>
+      <Modal
+        open={modalOpen}
+        title="Add manually"
+        onClose={handleClose}
+      >
+        <Form includeAddress />
+      </Modal>
+    </FormSubmitContext.Provider>
   );
 };
 
