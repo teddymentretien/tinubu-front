@@ -11,14 +11,10 @@ const BrokerSelectField: React.FC = () => {
 
   const options: Option[] = [
     { label: 'Robco Industries - 1785 Railway St, Kenora, ON P9N 0B5 - Canada', value: 'robco' },
-    { label: 'Add manually', value: 'add-manually' },
   ];
 
-  const handleOptionChange = (value: string) => {
+  const handleOnChange = (value: string) => {
     setSelectedOption(value);
-    if (value === 'add-manually') {
-      setModalOpen(true);
-    }
   };
 
   return (
@@ -27,7 +23,9 @@ const BrokerSelectField: React.FC = () => {
         options={options}
         label="Managing broker"
         value={selectedOption}
-        onChange={handleOptionChange}
+        onChange={handleOnChange}
+        actionLabel="Add manualy"
+        actionOnClick={() => setModalOpen(true)}
       />
 
       {isModalOpen && <ModalPlaceholder />}

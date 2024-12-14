@@ -4,24 +4,32 @@ import { TextField, MenuItem } from '@mui/material';
 export interface Option {
   label: string;
   value: string;
-  custom?: boolean;
-  component?: React.ComponentType; 
 }
 
 export interface SelectProps {
     options: Option[];
     label: string;
     value: string;
+    actionLabel?: string;
+    actionOnClick?: () => void;
     onChange: (value: string) => void;
 }
   
-export const SelectField: React.FC<SelectProps> = ({ options, label, value, onChange }) => {
+export const SelectField: React.FC<SelectProps> = (
+  { options, label, value, actionLabel, actionOnClick = () => {}, onChange }
+  ) => {
+
+  const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const targetValue = event.target.value;
+    targetValue === actionLabel ? actionOnClick() : onChange(targetValue);
+  };
+
   return (
     <TextField
       select
       label={label}
       value={value}
-      onChange={(event) => onChange(event.target.value)}
+      onChange={handleOnChange}
       fullWidth
     >
       {options.map((option) => (
@@ -29,6 +37,11 @@ export const SelectField: React.FC<SelectProps> = ({ options, label, value, onCh
           {option.label}
         </MenuItem>
       ))}
+      { actionLabel &&
+        <MenuItem key={actionLabel} value={actionLabel}>
+          {actionLabel}
+        </MenuItem>
+      }
     </TextField>
   );
 };
