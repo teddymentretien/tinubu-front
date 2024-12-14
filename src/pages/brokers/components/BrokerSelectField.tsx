@@ -38,7 +38,12 @@ const BrokerSelectField: React.FC = () => {
         title="Add manually"
         onClose={handleClose}
       >
-        <Form includeAddress />
+        <Form
+          includeAddress
+          includeCity
+          includeCountry
+          includeLegalName
+        />
       </Modal>
     </FormSubmitContext.Provider>
   );
