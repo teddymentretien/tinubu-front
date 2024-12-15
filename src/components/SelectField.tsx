@@ -24,6 +24,8 @@ export const SelectField: React.FC<SelectProps> = (
     targetValue === actionLabel ? actionOnClick() : onChange(targetValue);
   };
 
+  const selectedOption = options.find((option) => option.value === value);
+
   return (
     <TextField
       select
@@ -31,6 +33,11 @@ export const SelectField: React.FC<SelectProps> = (
       value={value}
       onChange={handleOnChange}
       fullWidth
+      slotProps={{
+        select: {
+          renderValue: () => selectedOption?.value || ""
+        }
+      }}
     >
       {options.map((option) => (
         <MenuItem key={option.value} value={option.value}>
