@@ -1,0 +1,62 @@
+[
+  {
+    "legalName": "Robco Industries",
+    "address": "1785 Railway St",
+    "city": "Kenora",
+    "country": "Canada"
+  },
+  {
+    "legalName": "Vault-Tec Corporation",
+    "address": "2029 Shelter Lane",
+    "city": "San Francisco",
+    "country": "USA"
+  },
+  {
+    "legalName": "Cyberdyne Systems",
+    "address": "1011 AI Blvd",
+    "city": "Los Angeles",
+    "country": "USA"
+  },
+  {
+    "legalName": "Wayne Enterprises",
+    "address": "1007 Mountain Dr",
+    "city": "Gotham",
+    "country": "USA"
+  },
+  {
+    "legalName": "Stark Industries",
+    "address": "10880 Malibu Point",
+    "city": "Malibu",
+    "country": "USA"
+  },
+  {
+    "legalName": "Oscorp Industries",
+    "address": "506 New York Ave",
+    "city": "New York",
+    "country": "USA"
+  },
+  {
+    "legalName": "LexCorp",
+    "address": "301 Metropolis Rd",
+    "city": "Metropolis",
+    "country": "USA"
+  },
+  {
+    "legalName": "Weyland-Yutani Corporation",
+    "address": "42 Space Colony",
+    "city": "Hadley's Hope",
+    "country": "Outer Rim"
+  },
+  {
+    "legalName": "Umbrella Corporation",
+    "address": "1998 Hive St",
+    "city": "Raccoon City",
+    "country": "USA"
+  },
+  {
+    "legalName": "InGen Corporation",
+    "address": "101 Jurassic Park Way",
+    "city": "Isla Nublar",
+    "country": "Costa Rica"
+  }
+]
