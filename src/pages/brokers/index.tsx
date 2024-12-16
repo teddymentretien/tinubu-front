@@ -1,11 +1,14 @@
 import React from "react";
-import BrokerSelectField from "./components/BrokerSelectField";
+import BrokerCard from "./components/BrokerCard";
+import { BrokerProvider } from "@/src/contexts/BrokerContext";
 
 const Brokers: React.FC = () => {
     return (
-        <div className="container mx-auto p-4">
-            <BrokerSelectField />
-        </div>
+        <BrokerProvider>
+            <div className="container mx-auto p-4">
+                <BrokerCard />
+            </div>
+        </BrokerProvider>
     )
 }
 

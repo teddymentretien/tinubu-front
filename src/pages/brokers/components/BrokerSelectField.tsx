@@ -1,14 +1,14 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { SelectField, Option } from "@/src/components/SelectField";
 import Modal from '@/src/components/Modal';
 import FormSubmitContext from '@/src/contexts/FormSubmitContext';
 import { CustomForm as Form, FormValues } from '@/src/components/Form';
-import { useBrokers } from '@/src/hooks/useBroker';
+import { useBrokerContext } from "@/src/contexts/BrokerContext";
+import { Broker } from '@/src/types/broker.types';
 
 const BrokerSelectField: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<string>('');
-  const { brokers, loading, error } = useBrokers();
+  const { brokers, selectedBroker, setSelectedBroker, loading, error } = useBrokerContext();
 
   const formattedBrokers: Option[] = useMemo(
     () =>
@@ -23,7 +23,8 @@ const BrokerSelectField: React.FC = () => {
   const handleClose = () => setModalOpen(false);
 
   const handleOnChange = (value: string) => {
-    setSelectedOption(value);
+    const selected: Broker|null = brokers.find((broker) => broker.legalName === value) || null;
+    setSelectedBroker(selected);
   };
 
   const handleFormSubmit = (formData: FormValues) => {
@@ -38,7 +39,7 @@ const BrokerSelectField: React.FC = () => {
       <SelectField
         options={formattedBrokers}
         label="Managing broker"
-        value={selectedOption}
+        value={selectedBroker?.legalName || ""}
         onChange={handleOnChange}
         actionLabel="Add manually"
         actionOnClick={handleOpen}
