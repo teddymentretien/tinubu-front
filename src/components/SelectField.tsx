@@ -46,7 +46,7 @@ export const SelectField: React.FC<SelectProps> = (
       ))}
       { actionLabel &&
         <MenuItem key={actionLabel} value={actionLabel}>
-          {actionLabel}
+          or <span className="ml-2 underline">{actionLabel}</span>
         </MenuItem>
       }
     </TextField>

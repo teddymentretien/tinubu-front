@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -19,12 +19,16 @@ const BrokerCard: React.FC = () => {
         </Typography>
         <BrokerSelectField />
         <div className="mt-3">  
-          <Typography variant="subtitle2" className="">
-            Address : <br/> {selectedBroker?.address}
-          </Typography>
-          <Typography variant="subtitle2">
-            Country : <br/> {selectedBroker?.country}
-          </Typography>
+          { selectedBroker && (
+              <Fragment>
+                <Typography variant="subtitle2" className="">
+                  Address : <br/> {selectedBroker?.address}
+                </Typography>
+                <Typography variant="subtitle2">
+                  Country : <br/> {selectedBroker?.country}
+                </Typography>
+              </Fragment>
+            )}
         </div>
       </CardContent>
     </Card>

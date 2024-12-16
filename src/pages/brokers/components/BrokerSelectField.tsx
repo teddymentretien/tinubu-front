@@ -5,10 +5,11 @@ import FormSubmitContext from '@/src/contexts/FormSubmitContext';
 import { CustomForm as Form, FormValues } from '@/src/components/Form';
 import { useBrokerContext } from "@/src/contexts/BrokerContext";
 import { Broker } from '@/src/types/broker.types';
+import { RestartAlt } from '@mui/icons-material';
 
 const BrokerSelectField: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  const { brokers, selectedBroker, setSelectedBroker, loading, error } = useBrokerContext();
+  const { brokers, selectedBroker, setSelectedBroker, addBroker, loading, error } = useBrokerContext();
 
   const formattedBrokers: Option[] = useMemo(
     () =>
@@ -27,11 +28,12 @@ const BrokerSelectField: React.FC = () => {
     setSelectedBroker(selected);
   };
 
-  const handleFormSubmit = (formData: FormValues) => {
+  const handleFormSubmit = (formData: Broker) => {
+    addBroker(formData);
     handleClose();
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div><RestartAlt className="animate-spin"/></div>;
   if (error) return <div>Error: {error}</div>;
 
   return (

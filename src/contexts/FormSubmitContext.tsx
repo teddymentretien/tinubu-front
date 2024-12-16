@@ -1,8 +1,7 @@
 import React from 'react';
-import { FormValues } from "@/src/components/Form";
 
 const FormSubmitContext = React.createContext({
-  submitForm: (values: FormValues) => {}
+  submitForm: (values: any) => {}
 });
 
 export default FormSubmitContext;
