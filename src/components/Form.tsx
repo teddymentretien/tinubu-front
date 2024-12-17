@@ -62,16 +62,16 @@ export const CustomForm: React.FC<FormFieldProps> = (props) => {
       {({ isSubmitting }) => (
         <Form className="space-y-4">
           {props.includeLegalName && (
-            <Field name="legalName" as={TextField} label="Legal Name" fullWidth helperText={<ErrorMessage name="legalName" />} />
+            <Field name="legalName" as={TextField} label="Legal Name" required margin="dense" fullWidth helperText={<ErrorMessage className="ml-0" name="legalName" />} />
           )}
           {props.includeAddress && (
-            <Field name="address" as={TextField} label="Address" fullWidth helperText={<ErrorMessage name="address" />} />
+            <Field name="address" as={TextField} label="Address" required margin="dense" fullWidth helperText={<ErrorMessage className="ml-0" name="address" />} />
           )}
           {props.includeCity && (
-            <Field name="city" as={TextField} label="City" fullWidth helperText={<ErrorMessage name="city" />} />
+            <Field name="city" as={TextField} label="City" required margin="dense" fullWidth helperText={<ErrorMessage className="ml-0" name="city" />} />
           )}
           {props.includeCountry && (
-            <Field name="country" as={TextField} label="Country" fullWidth helperText={<ErrorMessage name="country" />} />
+            <Field name="country" as={TextField} label="Country" required margin="dense" fullWidth helperText={<ErrorMessage className="ml-0" name="country" />} />
           )}
           <div className="flex justify-end space-x-2">
             <Button type="button" variant="outlined" color="primary" disabled={isSubmitting}>

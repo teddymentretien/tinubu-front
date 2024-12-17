@@ -19,7 +19,7 @@ const BrokerCard: React.FC = () => {
         </Typography>
         <BrokerSelectField />
         <div className="mt-3">  
-          { selectedBroker && (
+          { selectedBroker && !loading && (
               <Fragment>
                 <Typography variant="subtitle2" className="">
                   Address : <br/> {selectedBroker?.address}
