@@ -3,12 +3,14 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Button, TextField } from '@mui/material';
 import FormSubmitContext from '@/src/contexts/FormSubmitContext';
+import { useTranslation } from 'next-i18next';
 
 interface FormFieldProps {
   includeLegalName?: boolean;
   includeAddress?: boolean;
   includeCity?: boolean;
   includeCountry?: boolean;
+  onClose?: () => void;
 }
 
 export interface FormValues {
@@ -45,6 +47,7 @@ const getValidationSchema = (fields: FormFieldProps) => {
 };
 
 export const CustomForm: React.FC<FormFieldProps> = (props) => {
+  const { t } = useTranslation("common");
   const { submitForm } = useContext(FormSubmitContext);
   const initialValues = getInitialValues(props);
   const validationSchema = getValidationSchema(props);
@@ -55,30 +58,29 @@ export const CustomForm: React.FC<FormFieldProps> = (props) => {
       validationSchema={validationSchema}
       onSubmit={(values, { setSubmitting }) => {
         submitForm(values);
-        console.log(values);
         setSubmitting(false);
       }}
     >
       {({ isSubmitting }) => (
         <Form className="space-y-4">
           {props.includeLegalName && (
-            <Field name="legalName" as={TextField} label="Legal Name" required margin="dense" fullWidth helperText={<ErrorMessage className="ml-0" name="legalName" />} />
+            <Field name="legalName" as={TextField} label={t("broker_name")} required margin="dense" fullWidth helperText={<ErrorMessage className="ml-0" name="legalName" />} />
           )}
           {props.includeAddress && (
-            <Field name="address" as={TextField} label="Address" required margin="dense" fullWidth helperText={<ErrorMessage className="ml-0" name="address" />} />
+            <Field name="address" as={TextField} label={t("broker_address")} required margin="dense" fullWidth helperText={<ErrorMessage className="ml-0" name="address" />} />
           )}
           {props.includeCity && (
-            <Field name="city" as={TextField} label="City" required margin="dense" fullWidth helperText={<ErrorMessage className="ml-0" name="city" />} />
+            <Field name="city" as={TextField} label={t("broker_city")} required margin="dense" fullWidth helperText={<ErrorMessage className="ml-0" name="city" />} />
           )}
           {props.includeCountry && (
-            <Field name="country" as={TextField} label="Country" required margin="dense" fullWidth helperText={<ErrorMessage className="ml-0" name="country" />} />
+            <Field name="country" as={TextField} label={t("broker_country")} required margin="dense" fullWidth helperText={<ErrorMessage className="ml-0" name="country" />} />
           )}
           <div className="flex justify-end space-x-2">
-            <Button type="button" variant="outlined" color="primary" disabled={isSubmitting}>
-              Cancel
+            <Button type="button" variant="text" sx={{ color: "#757575" }} disabled={isSubmitting} onClick={props.onClose}>
+              {t("cancel")}
             </Button>
             <Button type="submit" variant="contained" color="primary" disabled={isSubmitting}>
-              Save
+              {t("save")}
             </Button>
           </div>
         </Form>

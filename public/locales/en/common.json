@@ -1,5 +1,16 @@
 {
     "welcome": "Tinubu - Broker Component",
-    "language": "Language"
+    "language": "Language",
+    "broker_title": "Managing Broker",
+    "broker_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "broker_address": "Address",
+    "broker_country": "Country",
+    "broker_city": "Cuty",
+    "broker_name": "Legal Name",
+    "broker_add": "Add manually",
+    "or": "or",
+    "save": "save",
+    "cancel": "cancel",
+    "select_language": "Select Language"
 }
   

@@ -15,7 +15,7 @@ const Home: React.FC = () => {
 
       <div className="flex items-center justify-center h-full">
         <div className="container">
-          <h1 className="text-4xl font-bold mb-8 text-gray-800 text-center">{t("welcome")}</h1>
+          {/* <h1 className="text-4xl font-bold mb-8 text-gray-800 text-center">{t("welcome")}</h1> */}
           <Brokers />
         </div>
       </div>

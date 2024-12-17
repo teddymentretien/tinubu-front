@@ -6,8 +6,10 @@ import { CustomForm as Form, FormValues } from '@/src/components/Form';
 import { useBrokerContext } from "@/src/contexts/BrokerContext";
 import { Broker } from '@/src/types/broker.types';
 import { RestartAlt } from '@mui/icons-material';
+import { useTranslation } from 'next-i18next';
 
 const BrokerSelectField: React.FC = () => {
+  const { t } = useTranslation("common");
   const [modalOpen, setModalOpen] = useState(false);
   const { brokers, selectedBroker, setSelectedBroker, addBroker, loading, error } = useBrokerContext();
 
@@ -40,15 +42,15 @@ const BrokerSelectField: React.FC = () => {
     <FormSubmitContext.Provider value={{ submitForm: handleFormSubmit }}>
       <SelectField
         options={formattedBrokers}
-        label="Managing broker"
+        label={t("broker_title")}
         value={selectedBroker?.legalName || ""}
         onChange={handleOnChange}
-        actionLabel="Add manually"
+        actionLabel={t("broker_add")}
         actionOnClick={handleOpen}
       />
       <Modal
         open={modalOpen}
-        title="Add manually"
+        title={t("broker_add")}
         onClose={handleClose}
       >
         <Form
@@ -56,6 +58,7 @@ const BrokerSelectField: React.FC = () => {
           includeCity
           includeCountry
           includeLegalName
+          onClose={handleClose}
         />
       </Modal>
     </FormSubmitContext.Provider>

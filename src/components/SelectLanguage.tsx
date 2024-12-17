@@ -8,7 +8,7 @@ const languageOptions: Option[] = [
 ];
 
 const SelectLanguage: React.FC = () => {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation("common");
   const currentLanguage = i18n.language;
 
   const handleChangeLanguage = (value: string) => {
@@ -17,7 +17,7 @@ const SelectLanguage: React.FC = () => {
 
   return (
     <SelectField
-      label="Select Language"
+      label={t("select_language")}
       value={currentLanguage}
       options={languageOptions}
       onChange={handleChangeLanguage}

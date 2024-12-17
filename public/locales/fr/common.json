@@ -1,5 +1,15 @@
 {
-    "welcome": "Tinubu - composant des Courtiers",
-    "language": "Langue"
+    "welcome": "Tinubu - Composant Coursier",
+    "language": "Langue",
+    "broker_title": "Gestionnaire de Coursier",
+    "broker_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "broker_address": "Adresse",
+    "broker_country": "Pays",
+    "broker_city": "Ville",
+    "broker_name": "Nom légal",
+    "broker_add": "Ajouter manuellement",
+    "or": "ou",
+    "save": "sauvegarder",
+    "cancel": "annuler",
+    "select_language": "Sélectionner la langue"
 }
-  
