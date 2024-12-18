@@ -1,6 +1,14 @@
 import React from 'react';
-import { TextField, MenuItem } from '@mui/material';
+import { TextField, MenuItem, InputAdornment } from '@mui/material';
 import { useTranslation } from 'next-i18next';
+import { Search } from '@mui/icons-material';
+import { styled } from '@mui/system';
+
+const CustomTextField = styled(TextField)({
+  '& .MuiSelect-icon': {
+    display: 'none',
+  },
+});
 
 export interface Option {
   label: string;
@@ -8,18 +16,18 @@ export interface Option {
 }
 
 export interface SelectProps {
-    options: Option[];
-    label: string;
-    value: string;
-    actionLabel?: string;
-    actionOnClick?: () => void;
-    onChange: (value: string) => void;
+  options: Option[];
+  label: string;
+  value: string;
+  icon?: React.ReactNode;
+  actionLabel?: string;
+  actionOnClick?: () => void;
+  onChange: (value: string) => void;
 }
-  
-export const SelectField: React.FC<SelectProps> = (
-  { options, label, value, actionLabel, actionOnClick = () => {}, onChange }
-  ) => {
 
+export const SelectField: React.FC<SelectProps> = (
+  { options, label, value, icon = <Search />, actionLabel, actionOnClick = () => {}, onChange }
+) => {
   const { t } = useTranslation("common");
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,14 +38,29 @@ export const SelectField: React.FC<SelectProps> = (
   const selectedOption = options.find((option) => option.value === value);
 
   return (
-    <TextField
+    <CustomTextField
       select
       label={label}
       value={value}
       onChange={handleOnChange}
       fullWidth
       slotProps={{
+        input: {
+          endAdornment: (
+            <InputAdornment position="start">
+              {icon}
+            </InputAdornment>
+          ),
+        },
         select: {
+          // MenuProps: {
+          //   PaperProps: {
+          //     style: {
+          //       maxHeight: 180,
+          //       overflowY: 'auto',
+          //     },
+          //   },
+          // },
           renderValue: () => selectedOption?.value || ""
         }
       }}
@@ -52,11 +75,11 @@ export const SelectField: React.FC<SelectProps> = (
           {option.label}
         </MenuItem>
       ))}
-      { actionLabel &&
+      {actionLabel && (
         <MenuItem key={actionLabel} value={actionLabel} sx={{ fontSize: '14px' }}>
           {t("or")} <span className="ml-1 underline">{actionLabel}</span>
         </MenuItem>
-      }
-    </TextField>
+      )}
+    </CustomTextField>
   );
 };
